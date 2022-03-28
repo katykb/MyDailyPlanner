@@ -39,14 +39,16 @@ moment().hour(Number);
     //runs constantly through the hour blocks
     $(".hourBlock").each(function () {
       //converts the string into an integer and assigns an attribute and splits the array
-      var hourBlockEl = parseInt($(this).attr("id").split("hour")[1]);
-      console.log(currentHour, hourBlockEl);
-
+      var hourBlockEl = $(this).attr("id")
+      var descriptionEl=localStorage.getItem(hourBlockEl);
+      console.log(currentHour, hourBlockEl, descriptionEl);
+      $(this).children(".description").val(descriptionEl);
+      
       if (hourBlockEl < currentHour) {
         $(this).addClass("past");
         $(this).removeClass("present");
         $(this).removeClass("future");
-      } else if (hourBlockEl === currentHour) {
+      } else if (hourBlockEl == currentHour) {
         $(this).addClass("present");
         $(this).removeClass("future");
         $(this).removeClass("past");
