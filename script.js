@@ -27,7 +27,7 @@ moment().hour(Number);
     var time = $(this).parent().attr("id");
     console.log("time: " + time);
     console.log("button clicked");
-    // localStorage.setItem("input", JSON.stringify(".description"));
+     localStorage.setItem(time, input);
 
     // $("8.description").val(localStorage.getItem("8"));
   });
