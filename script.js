@@ -4,23 +4,12 @@ $("#currentDay").text(today.format("MMM Do, YYYY"));
 
 moment().hour(Number);
 
-//time-block hours
-
-// moment().fromNow();
-// var hourEl = document.getElementById("description");
-// var time = moment().format("hh:mm:ss");
-// var rows =
-// $("hour").text(time);
-//function all() {
-  // //console.log(this);
-  // var time = $(this).parent().attr("id");
-  // var text = $(this).siblings().val();
-
+//when the save button is clicked on each hour the input is logged to console
+//the button click sets info to local storage with time var
   $(".saveBtn").on("click", function (event) {
     event.preventDefault();
     var storedDescriptionEl = $(this).siblings(".description");
-    //var hourEl = $(".hour");
-
+   
     let input = storedDescriptionEl.val();
     console.log("text: " ,input);
 
@@ -29,21 +18,21 @@ moment().hour(Number);
     console.log("button clicked");
      localStorage.setItem(time, input);
 
-    // $("8.description").val(localStorage.getItem("8"));
-  });
+    });
 
   function plannerHours() {
-    //var currentHour: calculated from momentJS
     var currentHour = moment().hour();
+    //var currentHour: calculated from momentJS
     //".hourBlock" pulled in from HTML
     //runs constantly through the hour blocks
+    //gets items from local storage so they will stay on calendar after refresh
     $(".hourBlock").each(function () {
-      //converts the string into an integer and assigns an attribute and splits the array
       var hourBlockEl = $(this).attr("id")
       var descriptionEl=localStorage.getItem(hourBlockEl);
       console.log(currentHour, hourBlockEl, descriptionEl);
       $(this).children(".description").val(descriptionEl);
       
+      //colors hours according to current time
       if (hourBlockEl < currentHour) {
         $(this).addClass("past");
         $(this).removeClass("present");
@@ -61,7 +50,4 @@ moment().hour(Number);
   }
 
   plannerHours();
-  //storedDescriptionEl = localStorage.getItem(JSON.stringify( storedDescriptionEl));
-  //console.log(storedDescriptionEl);
-//}
-//all();
+  
